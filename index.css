@@ -22,6 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .sign {
@@ -32,4 +33,8 @@
 #equal,
 #clear {
     width: 120px;
+}
+
+#display {
+    cursor: text;
 }

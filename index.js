@@ -31,6 +31,17 @@ function operate(operator, firstNumber, secondNumber) {
     }
 }
 
+const display = document.querySelector("#display");
+let displayContent = "";
+
+const digits = document.querySelectorAll(".digit");
+digits.forEach(element => {
+    element.addEventListener("click", () => {
+        displayContent += element.textContent;
+        display.textContent = displayContent;
+    });
+});
+
 let firstNumber = 3;
 let operator = "add";
 let secondNumber = 5;
