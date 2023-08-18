@@ -1,0 +1,35 @@
+#calculon {
+    width: 360px;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+
+#signs,
+#digits {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sign,
+.digit,
+#equal,
+#clear,
+#display {
+    box-sizing: border-box;
+    border-top: 1px solid #000;
+    border-left: 1px solid #000;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign {
+    width: 90px;
+}
+
+.digit,
+#equal,
+#clear {
+    width: 120px;
+}
