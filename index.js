@@ -16,18 +16,14 @@ function divide(a, b) {
 
 function operate(operator, firstNumber, secondNumber) {
     switch (operator) {
-        case "add":
-            add(firstNumber, secondNumber);
-            break;
-        case "subtract":
-            subtract(firstNumber, secondNumber);
-            break;
-        case "multiply":
-            multiply(firstNumber, secondNumber);
-            break;
-        case "divide":
-            divide(firstNumber, secondNumber);
-            break;
+        case "+":
+            return add(firstNumber, secondNumber);
+        case "-":
+            return subtract(firstNumber, secondNumber);
+        case "*":
+            return multiply(firstNumber, secondNumber);
+        case "/":
+            return divide(firstNumber, secondNumber);
     }
 }
 
@@ -38,10 +34,52 @@ const digits = document.querySelectorAll(".digit");
 digits.forEach(element => {
     element.addEventListener("click", () => {
         displayContent += element.textContent;
-        display.textContent = displayContent;
+        display.textContent += element.textContent;
     });
 });
 
-let firstNumber = 3;
-let operator = "add";
-let secondNumber = 5;
+let firstNumber;
+let operator;
+let secondNumber;
+
+const signs = document.querySelectorAll(".sign");
+signs.forEach(element => {
+    element.addEventListener("click", () => {
+        if (operator === undefined) {
+            firstNumber = +displayContent;
+            displayContent = "";
+
+            operator = element.dataset.operator;
+            display.textContent = `${firstNumber} ${operator} `;
+        } else {
+            secondNumber = +displayContent;
+            displayContent = "";
+
+            firstNumber = operate(operator, firstNumber, secondNumber);
+
+            operator = element.dataset.operator;
+            display.textContent = `${firstNumber} ${operator} `;
+        }
+    });
+});
+
+const equal = document.querySelector("#equal");
+equal.addEventListener("click", () => {
+    secondNumber = +displayContent;
+
+    product = operate(operator, firstNumber, secondNumber);
+    displayContent = product;
+    display.textContent = product;
+
+    operator = undefined;
+});
+
+const clear = document.querySelector("#clear");
+clear.addEventListener("click", () => {
+    displayContent = "";
+    display.textContent = "";
+
+    firstNumber = undefined;
+    operator = undefined;
+    secondNumber = undefined;
+});
